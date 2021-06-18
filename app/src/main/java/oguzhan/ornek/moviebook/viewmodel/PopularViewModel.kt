@@ -6,17 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import oguzhan.ornek.moviebook.model.Popular
 import oguzhan.ornek.moviebook.model.Upcoming
 import oguzhan.ornek.moviebook.repository.MovieRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel  @Inject constructor(
+class PopularViewModel @Inject constructor(
     private val movieRepository: MovieRepository
-    ): ViewModel() {
+) : ViewModel() {
 
-    private val _upComingMoviesLiveData: MutableLiveData<List<Upcoming>> = MutableLiveData()
-    val upComingMoviesLiveData: LiveData<List<Upcoming>> = _upComingMoviesLiveData
+
+    private val _popularMoviesLiveData: MutableLiveData<List<Popular>> = MutableLiveData()
+    val popularMoviesLiveData: LiveData<List<Popular>> = _popularMoviesLiveData
 
     private val _errorMessage: MutableLiveData<String> = MutableLiveData()
     val errorMessage: LiveData<String> = _errorMessage
@@ -24,14 +26,13 @@ class HomeViewModel  @Inject constructor(
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
     val isLoading: LiveData<Boolean> = _isLoading
 
-
-    fun getUpcomingMovie() = viewModelScope.launch{
+    fun getPopularMovie() = viewModelScope.launch{
         try {
-            _upComingMoviesLiveData.value = movieRepository.getUpcomingMovie()
+            _popularMoviesLiveData.value = movieRepository.getPopularMovie()
         }catch (exception:Exception){
             _errorMessage.value = exception.localizedMessage
         }finally {
-        _isLoading.value = false
+            _isLoading.value = false
     }
-    }
+}
 }
