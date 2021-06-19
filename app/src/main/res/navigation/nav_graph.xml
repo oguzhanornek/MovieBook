@@ -16,7 +16,11 @@
         android:id="@+id/popularListFragment"
         android:name="oguzhan.ornek.moviebook.view.PopularListFragment"
         android:label="fragment_popular_list"
-        tools:layout="@layout/fragment_popular_list" />
+        tools:layout="@layout/fragment_popular_list" >
+        <action
+            android:id="@+id/action_popularListFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="oguzhan.ornek.moviebook.view.SearchFragment"
@@ -32,6 +36,17 @@
             app:destination="@id/homeFragment" />
         <argument
             android:name="movieId"
-            app:argType="oguzhan.ornek.moviebook.model.Upcoming" />
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="oguzhan.ornek.moviebook.view.WebViewFragment"
+        android:label="WebViewFragment" >
+        <argument
+            android:name="link"
+            app:argType="string" />
     </fragment>
 </navigation>

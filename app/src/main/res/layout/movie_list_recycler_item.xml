@@ -32,31 +32,19 @@
     <TextView
         android:id="@+id/titleText"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppinslight"
         android:text="@{item.title}"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/moviePoster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/moviePoster"
         app:layout_constraintTop_toTopOf="@+id/moviePoster" />
 
-    <TextView
-        android:id="@+id/descriptionText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/poppinslight"
-        android:text="@{item.overview}"
-        android:textColor="@color/white"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/moviePoster"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/titleText"
-        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

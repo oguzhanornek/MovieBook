@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="oguzhan.ornek.moviebook.viewmodel.SimilarViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -11,7 +16,7 @@
         tools:context=".view.MovieDetailFragment">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/detailScreenPoster"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:src="@drawable/ic_launcher_background"
@@ -21,93 +26,150 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:id="@+id/detailLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/detail_bg"
+            android:layout_marginBottom="75dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/detailScreenPoster"
             app:layout_constraintVertical_bias="0.0">
-
-            <TextView
-                android:id="@+id/movieName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppinsmedium"
-                android:text="Movie Name"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/descriptionDetailText"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppinslight"
-                android:text="TextView"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movieName" />
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/movieName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Movie Name"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/imdbLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppinslight"
-                android:text="IMDB Link : "
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/descriptionDetailText"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionDetailText" />
+                <TextView
+                    android:id="@+id/descriptionDetailText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppinslight"
+                    android:text="TextView"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movieName" />
 
-            <TextView
-                android:id="@+id/similarText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppinsmedium"
-                android:text="Similar"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/imdbLink"
-                app:layout_constraintTop_toBottomOf="@+id/imdbLink" />
+                <TextView
+                    android:id="@+id/imdbLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/poppinslight"
+                    android:text="IMDB Link : "
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/descriptionDetailText"
+                    app:layout_constraintTop_toBottomOf="@+id/voteText" />
 
-            <TextView
-                android:id="@+id/lineText"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="50dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/similarText"
-                app:layout_constraintTop_toBottomOf="@+id/similarText" />
+                <TextView
+                    android:id="@+id/similarText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Similar"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/imdbLink"
+                    app:layout_constraintTop_toBottomOf="@+id/imdbLink" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/detailRecylerView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lineText" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/lineText"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/similarText"
+                    app:layout_constraintTop_toBottomOf="@+id/similarText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/similarRecylerView"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginVertical="20dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/lineText" />
+
+                <TextView
+                    android:id="@+id/budgetText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Budget"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/poppinslight"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/descriptionDetailText"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionDetailText" />
+
+                <TextView
+                    android:id="@+id/relaseDateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/poppinslight"
+                    android:text="Relase Date"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/budgetText"
+                    app:layout_constraintTop_toBottomOf="@+id/budgetText" />
+
+                <TextView
+                    android:id="@+id/voteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vote"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/poppinslight"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/budgetText"
+                    app:layout_constraintTop_toBottomOf="@+id/relaseDateText" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            visibleIf="@{viewModel.isLoading}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,8 +51,11 @@ class HomeFragment : Fragment() {
             }
 
             upComingMoviesLiveData.observe(viewLifecycleOwner, {
-
                 adapter.apply {
+                    movieClickListener = {
+                        val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(it)
+                        findNavController().navigate(action)
+                    }
                     setUpcomingMovies(it.toMutableList())
                     notifyDataSetChanged()
                 }

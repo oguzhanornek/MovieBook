@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import oguzhan.ornek.moviebook.R
 import oguzhan.ornek.moviebook.adapter.PopularMovieListAdapter
@@ -51,8 +52,11 @@ class PopularListFragment : Fragment() {
             }
 
             popularMoviesLiveData.observe(viewLifecycleOwner, {
-
                 adapter.apply {
+                    movieClickListener = {
+                        val action = PopularListFragmentDirections.actionPopularListFragmentToMovieDetailFragment(it)
+                        findNavController().navigate(action)
+                    }
                     setPopularMovie(it.toMutableList())
                     notifyDataSetChanged()
                 }

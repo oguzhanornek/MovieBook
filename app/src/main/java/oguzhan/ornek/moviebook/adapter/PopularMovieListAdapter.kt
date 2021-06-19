@@ -11,6 +11,8 @@ import oguzhan.ornek.moviebook.model.Upcoming
 class PopularMovieListAdapter :
     RecyclerView.Adapter<PopularMovieListAdapter.PopularMovieViewHolder>() {
     private val popularNovieList: MutableList<Popular> = mutableListOf()
+    var movieClickListener : (Int)-> Unit = {}
+
     fun setPopularMovie(list: MutableList<Popular>) {
         popularNovieList.clear()
         popularNovieList.addAll(list)
@@ -18,9 +20,13 @@ class PopularMovieListAdapter :
 
     class PopularMovieViewHolder(val view: PopularItemBinding) :
         RecyclerView.ViewHolder(view.root) {
-        fun bind(itemPop: Popular) {
+        fun bind(itemPop: Popular,movieClickListener : (Int)-> Unit) {
             view.apply {
                 item = itemPop
+            }
+            itemView.setOnClickListener {
+                movieClickListener.invoke(itemPop.id)
+
             }
         }
     }
@@ -32,7 +38,7 @@ class PopularMovieListAdapter :
     }
 
     override fun onBindViewHolder(holder: PopularMovieViewHolder, position: Int) {
-        holder.bind(popularNovieList[position])
+        holder.bind(popularNovieList[position],movieClickListener)
     }
 
     override fun getItemCount(): Int {
