@@ -16,16 +16,6 @@
         android:background="@color/l_black"
         tools:context=".view.PopularListFragment">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/profileBtnPopular"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/person_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/movieBookText"
             android:layout_width="wrap_content"

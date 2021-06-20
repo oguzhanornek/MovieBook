@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,9 +28,12 @@ class MovieDetailFragment : Fragment() {
     private val args : MovieDetailFragmentArgs by navArgs()
     private val adapter = SimilarMovieListAdapter ()
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        movieDetailViewModel.logMovieDetail()
     }
 
     override fun onCreateView(

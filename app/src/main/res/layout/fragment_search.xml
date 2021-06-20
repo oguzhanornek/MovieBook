@@ -3,34 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <data>
+        <variable
+            name="viewModel"
+            type="oguzhan.ornek.moviebook.viewmodel.SearchViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/l_black"
         tools:context=".view.SearchFragment">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/profileBtnSearch"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/person_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <SearchView
-            android:id="@+id/search_view"
+        <EditText
+            android:id="@+id/searchEdt"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:background="@color/white"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="24dp"
+            android:background="@color/white"
+            android:hint="Search Movie"
+            android:layout_marginTop="40dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@id/profileBtnSearch"
-            app:layout_constraintVertical_bias="0.15" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/lineTextSearch"
@@ -41,7 +36,7 @@
             android:layout_marginHorizontal="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_view" />
+            app:layout_constraintTop_toBottomOf="@+id/searchEdt" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recylerView_searchFragment"

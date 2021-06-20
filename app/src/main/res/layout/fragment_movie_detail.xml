@@ -111,7 +111,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/similarRecylerView"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_height="270dp"
                     android:layout_marginVertical="20dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

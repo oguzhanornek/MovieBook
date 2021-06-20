@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "728065724549",
+    "project_id": "moviebook-da5d2",
+    "storage_bucket": "moviebook-da5d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728065724549:android:679ce0ddc7e83f37a199ec",
+        "android_client_info": {
+          "package_name": "oguzhan.ornek.moviebook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728065724549-kjkd80gdvs6o931lcoafm579q6utpvv7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZtNY0r8JePrnSBMDJuqC5QmL9QUJK-4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728065724549-kjkd80gdvs6o931lcoafm579q6utpvv7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
