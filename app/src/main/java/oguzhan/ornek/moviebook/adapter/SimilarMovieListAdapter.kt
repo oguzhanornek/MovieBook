@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import oguzhan.ornek.moviebook.databinding.SimilarItemBinding
-import oguzhan.ornek.moviebook.model.Popular
 import oguzhan.ornek.moviebook.model.SimilarMovie
 
 class SimilarMovieListAdapter :
@@ -15,14 +14,15 @@ class SimilarMovieListAdapter :
         similarMovieList.clear()
         similarMovieList.addAll(list)
     }
+
     class SimilarMovieViewHolder(val view: SimilarItemBinding) :
-        RecyclerView.ViewHolder(view.root){
-            fun bind(itemSimilar : SimilarMovie){
-                    view.apply {
-                        item = itemSimilar
-                    }
+        RecyclerView.ViewHolder(view.root) {
+        fun bind(itemSimilar: SimilarMovie) {
+            view.apply {
+                item = itemSimilar
             }
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimilarMovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -35,6 +35,6 @@ class SimilarMovieListAdapter :
     }
 
     override fun getItemCount(): Int {
-       return similarMovieList.size
+        return similarMovieList.size
     }
 }

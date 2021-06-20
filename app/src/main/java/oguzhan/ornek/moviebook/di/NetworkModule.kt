@@ -21,7 +21,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideLoggingInterceptor() : HttpLoggingInterceptor{
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
@@ -31,10 +31,10 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor
-    ) : OkHttpClient{
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor{ chain ->
+            .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
                 val originalHttpUrl = chain.request().url
                 val url = originalHttpUrl.newBuilder().addQueryParameter("api_key", API_KEY).build()
@@ -64,6 +64,7 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
     }
+
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): MovieService {

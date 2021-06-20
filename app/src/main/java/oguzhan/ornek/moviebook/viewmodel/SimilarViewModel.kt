@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import oguzhan.ornek.moviebook.model.Popular
 import oguzhan.ornek.moviebook.model.SimilarMovie
 import oguzhan.ornek.moviebook.repository.MovieRepository
 import javax.inject.Inject
@@ -24,12 +23,12 @@ class SimilarViewModel @Inject constructor(
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun getSimilarMovie(movieId : Int) = viewModelScope.launch{
+    fun getSimilarMovie(movieId: Int) = viewModelScope.launch {
         try {
             _similarMoviesLiveData.value = movieRepository.getSimilarMovie(movieId)
-        }catch (exception:Exception){
+        } catch (exception: Exception) {
             _errorMessage.value = exception.localizedMessage
-        }finally {
+        } finally {
             _isLoading.value = false
         }
     }

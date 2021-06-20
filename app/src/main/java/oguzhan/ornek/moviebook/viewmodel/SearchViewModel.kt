@@ -11,9 +11,9 @@ import oguzhan.ornek.moviebook.repository.MovieRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel  @Inject constructor(
+class SearchViewModel @Inject constructor(
     private val movieRepository: MovieRepository
-): ViewModel()  {
+) : ViewModel() {
     private val _searchMovieLiveData: MutableLiveData<List<SearchMovieData>> = MutableLiveData()
     val searchMovieLiveData: LiveData<List<SearchMovieData>> = _searchMovieLiveData
 
@@ -24,12 +24,12 @@ class SearchViewModel  @Inject constructor(
     val isLoading: LiveData<Boolean> = _isLoading
 
 
-    fun getSearchedMovie(query : String) = viewModelScope.launch{
+    fun getSearchedMovie(query: String) = viewModelScope.launch {
         try {
             _searchMovieLiveData.value = movieRepository.getSearchedMovie(query)
-        }catch (exception:Exception){
+        } catch (exception: Exception) {
             _errorMessage.value = exception.localizedMessage
-        }finally {
+        } finally {
             _isLoading.value = false
         }
     }

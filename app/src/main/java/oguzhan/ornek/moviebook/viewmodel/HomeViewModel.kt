@@ -11,9 +11,9 @@ import oguzhan.ornek.moviebook.repository.MovieRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel  @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val movieRepository: MovieRepository
-    ): ViewModel() {
+) : ViewModel() {
 
     private val _upComingMoviesLiveData: MutableLiveData<List<Upcoming>> = MutableLiveData()
     val upComingMoviesLiveData: LiveData<List<Upcoming>> = _upComingMoviesLiveData
@@ -25,13 +25,13 @@ class HomeViewModel  @Inject constructor(
     val isLoading: LiveData<Boolean> = _isLoading
 
 
-    fun getUpcomingMovie() = viewModelScope.launch{
+    fun getUpcomingMovie() = viewModelScope.launch {
         try {
             _upComingMoviesLiveData.value = movieRepository.getUpcomingMovie()
-        }catch (exception:Exception){
+        } catch (exception: Exception) {
             _errorMessage.value = exception.localizedMessage
-        }finally {
-        _isLoading.value = false
-    }
+        } finally {
+            _isLoading.value = false
+        }
     }
 }

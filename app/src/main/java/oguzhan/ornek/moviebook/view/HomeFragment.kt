@@ -1,7 +1,6 @@
 package oguzhan.ornek.moviebook.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import oguzhan.ornek.moviebook.R
 import oguzhan.ornek.moviebook.adapter.UpcomingMovieListAdapter
@@ -53,7 +50,8 @@ class HomeFragment : Fragment() {
             upComingMoviesLiveData.observe(viewLifecycleOwner, {
                 adapter.apply {
                     movieClickListener = {
-                        val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(it)
+                        val action =
+                            HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(it)
                         findNavController().navigate(action)
                     }
                     setUpcomingMovies(it.toMutableList())

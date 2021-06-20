@@ -15,9 +15,9 @@ import oguzhan.ornek.moviebook.repository.MovieRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieDetailViewModel   @Inject constructor(
+class MovieDetailViewModel @Inject constructor(
     private val movieRepository: MovieRepository
-): ViewModel() {
+) : ViewModel() {
     private var firebaseAnalytics: FirebaseAnalytics = Firebase.analytics
     private val _movieDetailLiveData: MutableLiveData<MovieDetail> = MutableLiveData()
     val movieDetailLiveData: LiveData<MovieDetail> = _movieDetailLiveData
@@ -28,22 +28,22 @@ class MovieDetailViewModel   @Inject constructor(
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(true)
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun getMovieDetail( movieId : Int) = viewModelScope.launch{
+    fun getMovieDetail(movieId: Int) = viewModelScope.launch {
         try {
             _movieDetailLiveData.value = movieRepository.getMovieDetail(movieId)
-        }catch (exception:Exception){
+        } catch (exception: Exception) {
             _errorMessage.value = exception.localizedMessage
-        }finally {
+        } finally {
             _isLoading.value = false
         }
     }
 
-    fun logMovieDetail()= viewModelScope.launch{
-        firebaseAnalytics.logEvent("movie_detail"){
+    fun logMovieDetail() = viewModelScope.launch {
+        firebaseAnalytics.logEvent("movie_detail") {
             movieDetailLiveData.value?.let {
                 param("movie_name", it.title)
-                param("movie_description",it.overview)
-                param("movie_poster_path",it.poster_path)
+                param("movie_description", it.overview)
+                param("movie_poster_path", it.poster_path)
             }
         }
     }

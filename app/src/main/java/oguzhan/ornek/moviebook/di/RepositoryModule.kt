@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule  {
+object RepositoryModule {
     @Provides
     @Singleton
     fun provideMovieRepository(movieService: MovieService) = MovieRepository(movieService)

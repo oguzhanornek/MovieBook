@@ -22,12 +22,11 @@ import oguzhan.ornek.moviebook.viewmodel.SimilarViewModel
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
 
-    private val movieDetailViewModel : MovieDetailViewModel by viewModels()
-    private val similarViewModel : SimilarViewModel by viewModels()
-    private lateinit var binding : FragmentMovieDetailBinding
-    private val args : MovieDetailFragmentArgs by navArgs()
-    private val adapter = SimilarMovieListAdapter ()
-
+    private val movieDetailViewModel: MovieDetailViewModel by viewModels()
+    private val similarViewModel: SimilarViewModel by viewModels()
+    private lateinit var binding: FragmentMovieDetailBinding
+    private val args: MovieDetailFragmentArgs by navArgs()
+    private val adapter = SimilarMovieListAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +39,8 @@ class MovieDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_movie_detail,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
         return binding.root
     }
 
@@ -52,22 +52,24 @@ class MovieDetailFragment : Fragment() {
     }
 
 
-    fun observeLiveData(){
+    fun observeLiveData() {
 
         movieDetailViewModel.getMovieDetail(args.movieId)
         movieDetailViewModel.movieDetailLiveData.observe(viewLifecycleOwner, Observer {
-          it?.let {
+            it?.let {
 
-              binding.movieName.text = it.title
-              binding.descriptionDetailText.text = it.overview
-              binding.detailScreenPoster.bindUrlImage(it.poster_path)
-              binding.imdbLink.text = "IMDB Link : www.imdb.com/title/${it.imdb_id}/"
-              binding.budgetText.text = "The budget of the movie : ${it.budget} $"
-              binding.relaseDateText.text = "Release date : ${it.release_date}"
-              binding.voteText.text = "It got ${it.vote_average} points out of ${it.vote_count} votes."
-          }
+                binding.movieName.text = it.title
+                binding.descriptionDetailText.text = it.overview
+                binding.detailScreenPoster.bindUrlImage(it.poster_path)
+                binding.imdbLink.text = "IMDB Link : www.imdb.com/title/${it.imdb_id}/"
+                binding.budgetText.text = "The budget of the movie : ${it.budget} $"
+                binding.relaseDateText.text = "Release date : ${it.release_date}"
+                binding.voteText.text =
+                    "It got ${it.vote_average} points out of ${it.vote_count} votes."
+            }
             binding.imdbLink.setOnClickListener { click ->
-                val action = MovieDetailFragmentDirections.actionMovieDetailFragmentToWebViewFragment("https://www.imdb.com/title/${it.imdb_id}/")
+                val action =
+                    MovieDetailFragmentDirections.actionMovieDetailFragmentToWebViewFragment("https://www.imdb.com/title/${it.imdb_id}/")
                 findNavController().navigate(action)
             }
         })
@@ -93,7 +95,7 @@ class MovieDetailFragment : Fragment() {
             })
 
             errorMessage.observe(viewLifecycleOwner, {
-               Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             })
         }
     }
