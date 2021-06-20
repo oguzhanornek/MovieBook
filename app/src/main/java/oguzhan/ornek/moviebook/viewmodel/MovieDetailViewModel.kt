@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import oguzhan.ornek.moviebook.model.MovieDetail
+import oguzhan.ornek.moviebook.model.SimilarMovie
 import oguzhan.ornek.moviebook.repository.MovieRepository
 import javax.inject.Inject
 
@@ -19,8 +20,12 @@ class MovieDetailViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel() {
     private var firebaseAnalytics: FirebaseAnalytics = Firebase.analytics
+
     private val _movieDetailLiveData: MutableLiveData<MovieDetail> = MutableLiveData()
     val movieDetailLiveData: LiveData<MovieDetail> = _movieDetailLiveData
+
+    private val _similarMoviesLiveData: MutableLiveData<List<SimilarMovie>> = MutableLiveData()
+    val similarMoviesLiveData: LiveData<List<SimilarMovie>> = _similarMoviesLiveData
 
     private val _errorMessage: MutableLiveData<String> = MutableLiveData()
     val errorMessage: LiveData<String> = _errorMessage
@@ -31,6 +36,7 @@ class MovieDetailViewModel @Inject constructor(
     fun getMovieDetail(movieId: Int) = viewModelScope.launch {
         try {
             _movieDetailLiveData.value = movieRepository.getMovieDetail(movieId)
+            _similarMoviesLiveData.value = movieRepository.getSimilarMovie(movieId)
         } catch (exception: Exception) {
             _errorMessage.value = exception.localizedMessage
         } finally {

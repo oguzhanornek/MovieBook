@@ -40,32 +40,35 @@ class SearchFragment : Fragment() {
 
     private fun initObservers() {
         with(searchViewModel) {
-            binding.searchEdt.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                    searchViewModel.getSearchedMovie(s.toString())
-                }
-            })
             binding.apply {
                 lifecycleOwner = this@SearchFragment
                 viewModel = searchViewModel
 
                 recylerViewSearchFragment.adapter = adapter
+
+                searchEdt.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
+
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+                        searchViewModel.getSearchedMovie(s.toString())
+                    }
+                })
             }
 
             searchMovieLiveData.observe(viewLifecycleOwner, {
                 adapter.apply {
+
                     movieClickListener = {
                         val action =
                             SearchFragmentDirections.actionSearchFragmentToMovieDetailFragment(it)

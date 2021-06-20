@@ -31,9 +31,9 @@ class WebViewFragment : Fragment() {
         webViewSetup()
     }
 
-    fun webViewSetup() {
-        binding.webView.webViewClient = WebViewClient()
+    private fun webViewSetup() {
         binding.webView.apply {
+            webViewClient = WebViewClient()
             loadUrl(args.link)
         }
     }
