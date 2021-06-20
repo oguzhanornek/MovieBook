@@ -61,7 +61,12 @@ class SearchFragment : Fragment() {
                     }
 
                     override fun afterTextChanged(s: Editable?) {
-                        searchViewModel.getSearchedMovie(s.toString())
+                        if (s!=null){
+                            if (!s.isEmpty()){
+                                searchViewModel.getSearchedMovie(s.toString())
+                            }
+                        }
+
                     }
                 })
             }
